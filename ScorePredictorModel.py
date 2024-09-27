@@ -65,39 +65,4 @@ regressor.fit(X_train,y_train)
 filename = 'first-innings-score-lr-model.pkl'
 pickle.dump(regressor, open(filename, 'wb'))
 
-'''
 
-## Ridge Regression
-from sklearn.linear_model import Ridge
-from sklearn.model_selection import GridSearchCV
-ridge=Ridge()
-parameters={'alpha':[1e-21,1e-15,1e-8,1e-3,1e-2,1,5,10,20,30,35,40]}
-ridge_regressor=GridSearchCV(ridge,parameters,scoring='neg_mean_squared_error',cv=10)
-ridge_regressor.fit(X_train,y_train)
-print(ridge_regressor.best_params_)
-print(ridge_regressor.best_score_)
-prediction=ridge_regressor.predict(X_test)
-import seaborn as sns
-sns.distplot(y_test-prediction)
-from sklearn import metrics
-import numpy as np
-print('MAE:', metrics.mean_absolute_error(y_test, prediction))
-print('MSE:', metrics.mean_squared_error(y_test, prediction))
-print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, prediction)))
-
-
-
-#Lasso Regression
-from sklearn.linear_model import Lasso
-from sklearn.model_selection import GridSearchCV
-lasso=Lasso()
-parameters={'alpha':[1e-21,1e-15,1e-8,1e-3,1e-2,1,5,10,20,30,35,40]}
-lasso_regressor=GridSearchCV(lasso,parameters,scoring='neg_mean_squared_error',cv=5)
-lasso_regressor.fit(X_train,y_train)
-print(lasso_regressor.best_params_)
-print(lasso_regressor.best_score_)
-prediction=lasso_regressor.predict(X_test)
-print('MAE:', metrics.mean_absolute_error(y_test, prediction))
-print('MSE:', metrics.mean_squared_error(y_test, prediction))
-print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, prediction)))
-'''
